@@ -23,7 +23,7 @@ OPERATION	= $(addprefix operations_bonus/, pa_push_a pb_push_b ra_rotate_a \
 CHECKS		= $(addprefix checks_bonus/, get_input is_sorted is_empty is_integer is_duplicates \
 			  is_greater_than_int put_error)
 UTILS		= $(addprefix utils_bonus/, ft_swap ft_atoi ft_strcmp ft_putstr \
-				ft_strdup get_next_line get_next_line_utils)
+				ft_strdup ft_strjoin ft_strlen)
 STACK		= $(addprefix stack_bonus/, create_new_elem push_elem stack_init \
 			  push_elem_bottom free_stack pop_elem poop_elem)
 FILES		= $(addprefix srcs_bonus/, checker $(STACK) $(OPERATION) $(UTILS) $(CHECKS))

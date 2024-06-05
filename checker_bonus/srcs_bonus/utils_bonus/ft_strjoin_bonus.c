@@ -17,9 +17,15 @@ char	*ft_strjoin(char *s1, char c)
 	char	*output;
 	int		i;
 	int		j;
+	int 	a;
+
+	a = 0;
 
 	if (!s1)
+	{
 		s1 = ft_strdup("");
+		a = 1;
+	}
 	output = (char *) malloc((ft_strlen(s1) + 2) * sizeof(char));
 	if (!output)
 		return (0);
@@ -29,5 +35,7 @@ char	*ft_strjoin(char *s1, char c)
 		output[i++] = s1[j++];
 	output[i++] = c;
 	output[i] = 0;
+	if (a == 1)
+		free(s1);
 	return (output);
 }

@@ -26,7 +26,7 @@ OPERATION	= $(addprefix operations/, pa_push_a pb_push_b ra_rotate_a \
 CHECKS		= $(addprefix checks/, get_input is_int is_all_integer is_duplicates size_of_args\
 			  	is_greater_than_int put_error put_args_into_one_list)
 UTILS		= $(addprefix utils/, ft_swap ft_atoi ft_strcmp ft_putstr ft_substr ft_split \
-				ft_strlen ft_strdup char)
+				ft_strlen ft_strdup)
 ALGO		= $(addprefix algorithm/, turk_sort sort_three \
 				cost_to_top cost_to_top_up cost_to_top_down do_chep_moves find_cheap_nb \
 			   	make_elem_top get_position_a get_position_b)

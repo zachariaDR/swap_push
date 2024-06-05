@@ -14,17 +14,17 @@
 
 void	rotate_reverse(char *str, t_stack *a, t_stack *b)
 {
-	if (ft_strcmp(str, "ra\n") == 0)
+	if (ft_strcmp(str, "ra") == 0)
 		ra_rotate_a(a, true);
-	else if (ft_strcmp(str, "rb\n") == 0)
+	else if (ft_strcmp(str, "rb") == 0)
 		rb_rotate_b(b, true);
-	else if (ft_strcmp(str, "rra\n") == 0)
+	else if (ft_strcmp(str, "rra") == 0)
 		rra_reverse_rotate_a(a, true);
-	else if (ft_strcmp (str, "rrb\n") == 0)
+	else if (ft_strcmp (str, "rrb") == 0)
 		rrb_reverse_rotate_b(b, true);
-	else if (ft_strcmp (str, "rr\n") == 0)
+	else if (ft_strcmp (str, "rr") == 0)
 		rr_ra_rb(a, b, true);
-	else if (ft_strcmp (str, "rrr\n") == 0)
+	else if (ft_strcmp (str, "rrr") == 0)
 		rrr_rra_rrb(a, b, true);
 	else
 	{
@@ -38,39 +38,39 @@ void	rotate_reverse(char *str, t_stack *a, t_stack *b)
 
 void	do_operation(char *str, t_stack *a, t_stack *b)
 {
-	if (ft_strcmp(str, "pa\n") == 0)
+	if (ft_strcmp(str, "pa") == 0)
 		pa_push_a(a, b, true);
-	else if (ft_strcmp(str, "pb\n") == 0)
+	else if (ft_strcmp(str, "pb") == 0)
 		pb_push_b(a, b, true);
-	else if (ft_strcmp(str, "sa\n") == 0)
+	else if (ft_strcmp(str, "sa") == 0)
 		sa_swap_a(a, true);
-	else if (ft_strcmp (str, "sb\n") == 0)
+	else if (ft_strcmp (str, "sb") == 0)
 		sb_swap_b(b, true);
-	else if (ft_strcmp (str, "ss\n") == 0)
+	else if (ft_strcmp (str, "ss") == 0)
 		ss_sa_sb(a, b, true);
 	else
 		rotate_reverse(str, a, b);
 }
 
-// void	read_from_stdin(t_stack *a, t_stack *b)
-// {
-// 	char	*input;
-// 	char	c;
+void	read_from_stdin(t_stack *a, t_stack *b)
+{
+	char	*input;
+	char	c;
 
-// 	input = NULL;
-// 	while (read(0, &c, 1))
-// 	{
-// 		if (c == '\n')
-// 		{
-// 			do_operation(input, a, b);
-// 			free(input);
-// 			input = ft_strdup("");
-// 		}
-// 		else
-// 			input = ft_strjoin(input, c);
-// 	}
-// 	free(input);
-// }
+	input = NULL;
+	while (read(0, &c, 1))
+	{
+		if (c == '\n')
+		{
+			do_operation(input, a, b);
+			free(input);
+			input = ft_strdup("");
+		}
+		else
+			input = ft_strjoin(input, c);
+		free(input);
+	}
+}
 
 
 int	main(int ac, char **av)
@@ -79,21 +79,13 @@ int	main(int ac, char **av)
 	t_stack	*b;
 
 	if (ac == 1)
-	{
-		
+	{		
 		exit (EXIT_FAILURE);
 	}
 	a = stack_init();
 	b = stack_init();
 	get_input(a, av + 1, ac - 1);
-	char *str = get_next_line(0);
-	while (str)
-	{
-		do_operation(str, a, b);
-		//printf("%s", str);
-		str = get_next_line(0);
-	}
-	//read_from_stdin(a, b);
+	read_from_stdin(a, b);
 	if (is_sorted(*a))
 		ft_putstr("OK\n");
 	else
@@ -103,4 +95,3 @@ int	main(int ac, char **av)
 	
 	exit (EXIT_SUCCESS);
 }
-
