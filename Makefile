@@ -10,10 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= push_swap
+NAME		= 
+PUSH_SWAP	= push_swap
+CHECKER		= checker
 	
 CC			= cc
-FLAGS		= -Wall -Wextra -Werror -fsanitize -g3
+FLAGS		= -Wall -Wextra -Werror
 RM			= rm -rf
 
 STACK		= $(addprefix stack/, create_new_elem free_stack pop_elem poop_elem \
@@ -31,10 +33,16 @@ ALGO		= $(addprefix algorithm/, turk_sort sort_three \
 				cost_to_top cost_to_top_up cost_to_top_down do_chep_moves find_cheap_nb \
 			   	make_elem_top get_position_a get_position_b)
 FILES		= $(addprefix srcs/, push_swap $(STACK) $(OPERATION) $(UTILS) $(CHECKS) $(ALGO))
+FILES_BONUS	= $(addprefix srcs/, checker_bonus $(STACK) $(OPERATION) $(UTILS) $(CHECKS) $(ALGO))
 
 SRC			= $(FILES:=.c)
 OBJ			= $(FILES:=.o)
+SRC_BONUS	= $(FILES_BONUS:=.c)
+OBJ_BONUS	= $(FILES_BONUS:=.o)
+
 HEADER		= $(addprefix includes/, push_swap.h)
+HEADER2		= $(addprefix includes/, checker_bonus.h)
+
 INCLUDES	= -I includes
 
 #Colors:
@@ -44,23 +52,17 @@ GRAY		=	\e[33;2;37m
 RESET		=	\e[0m
 CURSIVE		=	\e[33;3m
 
-#Debug 
-ifeq ($(DEBUG), 1)
-   OPTS = -g
-endif
 
+all: $(PUSH_SWAP) 
 
-
-all: $(NAME)
-
-$(NAME):  $(OBJ) $(HEADER)
+$(PUSH_SWAP):  $(OBJ) $(HEADER)
 	@printf "$(CURSIVE)$(GRAY) 	- Compiling $(NAME)... $(RESET)\n"
-	@ $(CC) $(OBJ) $(INCLUDES) $(OPTS) -o $(NAME)
+	@ $(CC) $(OBJ) $(INCLUDES) -o $(PUSH_SWAP)
 	@printf "$(GREEN)    - Executable ready.\n$(RESET)"
 
 %.o: %.c $(HEADER)
 	@printf "$(CURSIVE)$(GRAY) 	- Making object file $(notdir $@) from source file $(notdir $<) ... $(RESET)\n"
-	@ $(CC) -Wall -Wextra -Werror $(OPTS) $(INCLUDES) -c $< -o $@
+	@ $(CC) -Wall -Wextra -Werror $(INCLUDES) -c $< -o $@
 
 norm:
 	@printf "$(CURSIVE)$(GRAY)"
@@ -71,14 +73,16 @@ test: all
 	@printf "\n$(YELLOW)	- Testing $(ARG) random numbers.. $(RESET)\n\n"
 	@sh testing/testing.sh $(ARG) 
 
-bonus:
-	@$(MAKE) -C checker_bonus
+bonus: $(CHECKER) $(HEADER2)
+
+$(CHECKER):	$(OBJ) $(HEADER2)
+	@$(CC) $(OBJ) $(INCLUDES) -o $(CHECKER)
+
 clean_bonus:
-	@$(MAKE) clean -C checker_bonus
+	@$(RM) $(OBJ_BONUS)
 fclean_bonus:
-	@$(MAKE) fclean -C checker_bonus
-re_bonus:
-	@$(MAKE) re -C checker_bonus
+	@$(RM) $(SRC_BONUS)
+re_bonus: fclean bonus
 
 clean:
 	@ $(RM) $(OBJ)
@@ -86,8 +90,8 @@ clean:
 	@printf "$(YELLOW)    - Object files removed.$(RESET)\n"
 
 fclean: clean
-	@ $(RM) $(NAME)
-	@printf "$(CURSIVE)$(GRAY)	- Removing $(NAME)... $(RESET)\n"
+	@ $(RM) $(PUSH_SWAP)
+	@printf "$(CURSIVE)$(GRAY)	- Removing $(PUSH_SWAP)... $(RESET)\n"
 	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
 
 re: fclean all
