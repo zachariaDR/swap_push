@@ -90,9 +90,11 @@ int					ft_atoi(const char *str);
 int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strdup(const char *s1);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
+
 char				**ft_split(char const *s, char c);
-size_t				ft_strlen(const char *s);
 char				**free_list(char **tab);
+size_t				ft_strlen(const char *s);
+
 
 /* ---- Algorithm Functions ---- */
 void				sort_three(t_stack *a);
