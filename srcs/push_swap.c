@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zadriouc <zadriouc@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zadriouc <zadriouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 09:42:38 by ael-khni          #+#    #+#             */
-/*   Updated: 2024/06/03 00:18:19 by zadriouc         ###   ########.fr       */
+/*   Updated: 2024/06/08 10:00:58 by zadriouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int	main(int ac, char **av)
 		sort_three(a);
 	else
 		turk_sort(a, b);
+	// ft_print_stack(*a, 'A');
+	// ft_print_stack(*b, 'B');
+	// if (is_sorted(*a))
+	// 	printf("OK\n");
+	// else
+	// 	printf("KO\n");
 	free_stack(a);
 	free_stack(b);
 	

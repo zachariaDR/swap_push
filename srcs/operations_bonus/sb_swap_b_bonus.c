@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sb_swap_b_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-khni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zadriouc <zadriouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 02:19:53 by ael-khni          #+#    #+#             */
-/*   Updated: 2022/01/20 02:19:54 by ael-khni         ###   ########.fr       */
+/*   Updated: 2024/06/07 23:54:26 by zadriouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sb_swap_b(t_stack *b, int flag)
 {
 	int	tmp;
 
-	if (is_empty(b))
+	if (is_empty(b) || b->size == 1)
 		return ;
 	tmp = b->top->data;
 	b->top->data = b->top->bellow->data;

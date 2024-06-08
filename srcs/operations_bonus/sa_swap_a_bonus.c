@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sa_swap_a_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-khni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zadriouc <zadriouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 02:19:47 by ael-khni          #+#    #+#             */
-/*   Updated: 2022/01/20 02:19:48 by ael-khni         ###   ########.fr       */
+/*   Updated: 2024/06/07 23:54:10 by zadriouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sa_swap_a(t_stack *a, int flag)
 {
 	int	tmp;
 
-	if (is_empty(a))
+	if (is_empty(a) || a->size == 1)
 		return ;
 	tmp = a->top->data;
 	a->top->data = a->top->bellow->data;

@@ -16,5 +16,4 @@ void	rrr_rra_rrb(t_stack *a, t_stack *b)
 {
 	rra_reverse_rotate_a(a, true);
 	rrb_reverse_rotate_b(b, true);
-	ft_putstr("rrr\n");
 }

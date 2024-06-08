@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup_bonus.c                                  :+:      :+:    :+:   */
+/*   ra_rotate_a_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-khni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zadriouc <zadriouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 01:33:23 by ael-khni          #+#    #+#             */
-/*   Updated: 2022/01/20 01:49:28 by ael-khni         ###   ########.fr       */
+/*   Created: 2022/01/20 02:18:02 by ael-khni          #+#    #+#             */
+/*   Updated: 2024/06/07 23:49:08 by zadriouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-char	*ft_strdup(char *s1)
+void	ra_rotate_a(t_stack *a, int flag)
 {
-	char	*copy;
-	size_t	s1_len;
-	int		i;
-
-	i = 0;
-	s1_len = ft_strlen(s1);
-	copy = malloc(sizeof(char) * (s1_len + 1));
-	if (!copy)
-		return (NULL);
-	while (s1[i])
-	{
-		copy[i] = s1[i];
-		i++;
-	}
-	copy[i] = '\0';
-	return (copy);
+	if (is_empty(a) || a->size == 1)
+		return ;
+	push_elem_bottom(a, new_elem(a->top->data));
+	pop_elem(a);
+	if (!flag)
+		ft_putstr("ra\n");
 }

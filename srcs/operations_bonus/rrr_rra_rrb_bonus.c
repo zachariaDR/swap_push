@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stack_bonus.c                                 :+:      :+:    :+:   */
+/*   rrr_rra_rrb_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-khni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zadriouc <zadriouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 01:07:09 by ael-khni          #+#    #+#             */
-/*   Updated: 2022/01/20 01:11:33 by ael-khni         ###   ########.fr       */
+/*   Created: 2022/01/20 02:19:36 by ael-khni          #+#    #+#             */
+/*   Updated: 2024/06/07 23:53:47 by zadriouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-/* free_stack: a function to free everything before exiting */
-void	free_stack(t_stack *stack)
+/* rrr: reverse rotate a and reverse rotate b at the same time */
+void	rrr_rra_rrb(t_stack *a, t_stack *b, int flag)
 {
-	while (!is_empty(stack))
-		pop_elem(stack);
-	free(stack);
+	if (a->size <= 1 || b->size <= 1)
+		return ;
+	rra_reverse_rotate_a(a, true);
+	rrb_reverse_rotate_b(b, true);
+	if (!flag)
+		ft_putstr("rrr\n");
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zadriouc <zadriouc@student.1337.ma>        +#+  +:+       +#+         #
+#    By: zadriouc <zadriouc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/12 07:40:22 by ael-khni          #+#    #+#              #
-#    Updated: 2024/06/03 23:58:55 by zadriouc         ###   ########.fr        #
+#    Updated: 2024/06/07 23:44:15 by zadriouc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CHECKER		= checker
 	
 CC			= cc
 FLAGS		= -Wall -Wextra -Werror
-RM			= rm -rf
+RM			= rm -f
 
 STACK		= $(addprefix stack/, create_new_elem free_stack pop_elem poop_elem \
 			  push_elem push_elem_bottom stack_init is_elem_exist ft_print_stack \
@@ -25,15 +25,20 @@ OPERATION	= $(addprefix operations/, pa_push_a pb_push_b ra_rotate_a \
 				rb_rotate_b rr_ra_rb rra_reverse_rotate_a \
 				rrb_reverse_rotate_b rrr_rra_rrb sa_swap_a sb_swap_b \
 				ss_sa_sb ra_n rb_n rr_n rra_n rrb_n rrr_n)
+OPERATION_B	= $(addprefix operations_bonus/, pa_push_a_bonus pb_push_b_bonus ra_rotate_a_bonus \
+				rb_rotate_b_bonus rr_ra_rb_bonus rra_reverse_rotate_a_bonus \
+				rrb_reverse_rotate_b_bonus rrr_rra_rrb_bonus sa_swap_a_bonus sb_swap_b_bonus \
+				ss_sa_sb_bonus)				
 CHECKS		= $(addprefix checks/, get_input is_int is_all_integer is_duplicates size_of_args\
 			  	is_greater_than_int put_error put_args_into_one_list)
 UTILS		= $(addprefix utils/, ft_swap ft_atoi ft_strcmp ft_putstr ft_substr ft_split \
-				ft_strlen ft_strdup)
+				ft_strlen ft_strdup ft_strjoin get_next_line_utils get_next_line)
 ALGO		= $(addprefix algorithm/, turk_sort sort_three \
 				cost_to_top cost_to_top_up cost_to_top_down do_chep_moves find_cheap_nb \
 			   	make_elem_top get_position_a get_position_b)
 FILES		= $(addprefix srcs/, push_swap $(STACK) $(OPERATION) $(UTILS) $(CHECKS) $(ALGO))
-FILES_BONUS	= $(addprefix srcs/, checker_bonus $(STACK) $(OPERATION) $(UTILS) $(CHECKS) $(ALGO))
+FILES_BONUS	= $(addprefix srcs/, checker_bonus $(STACK) $(OPERATION_B) $(UTILS) $(CHECKS))
+
 
 SRC			= $(FILES:=.c)
 OBJ			= $(FILES:=.o)
@@ -62,7 +67,7 @@ $(PUSH_SWAP):  $(OBJ) $(HEADER)
 
 %.o: %.c $(HEADER)
 	@printf "$(CURSIVE)$(GRAY) 	- Making object file $(notdir $@) from source file $(notdir $<) ... $(RESET)\n"
-	@ $(CC) -Wall -Wextra -Werror $(INCLUDES) -c $< -o $@
+	@ $(CC) -Wall -Wextra -Werror -g $(INCLUDES) -c $< -o $@
 
 norm:
 	@printf "$(CURSIVE)$(GRAY)"
@@ -75,14 +80,14 @@ test: all
 
 bonus: $(CHECKER) $(HEADER2)
 
-$(CHECKER):	$(OBJ) $(HEADER2)
-	@$(CC) $(OBJ) $(INCLUDES) -o $(CHECKER)
+$(CHECKER):	$(OBJ_BONUS) $(HEADER2)
+	@$(CC) $(OBJ_BONUS) $(INCLUDES) -o $(CHECKER)
 
 clean_bonus:
 	@$(RM) $(OBJ_BONUS)
-fclean_bonus:
-	@$(RM) $(SRC_BONUS)
-re_bonus: fclean bonus
+fclean_bonus: clean_bonus
+	@$(RM) $(CHECKER)
+re_bonus: fclean_bonus bonus
 
 clean:
 	@ $(RM) $(OBJ)
@@ -95,5 +100,10 @@ fclean: clean
 	@printf "$(YELLOW)    - Executable removed.$(RESET)\n"
 
 re: fclean all
+
+show:
+	echo $(OBJ_BONUS)
+	echo "----------"
+	echo $(SRC_BONUS)
 
 .PHONY: all clean fclean re bonus clean_bonus fclean_bonus test norm

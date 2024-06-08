@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rr_ra_rb_bonus.c                                   :+:      :+:    :+:   */
+/*   rrb_reverse_rotate_b_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zadriouc <zadriouc@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zadriouc <zadriouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 02:18:26 by ael-khni          #+#    #+#             */
-/*   Updated: 2024/06/04 10:06:20 by zadriouc         ###   ########.fr       */
+/*   Created: 2022/01/20 02:19:31 by ael-khni          #+#    #+#             */
+/*   Updated: 2024/06/07 23:53:31 by zadriouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-/* rr: rotate a and rotate b at the same time. */
-void	rr_ra_rb(t_stack *a, t_stack *b, int flag)
+/* rrb: reverse rotate b - shift down all elements of stack b by 1.
+ * the last one becomes the first one. */
+void	rrb_reverse_rotate_b(t_stack *b, int flag)
 {
-	ra_rotate_a(a, true);
-	rb_rotate_b(b, true);
+	if (is_empty(b) || b->size == 1)
+		return ;
+	push_elem(b, new_elem(b->bottom->data));
+	poop_elem(b);
 	if (!flag)
-		ft_putstr("rr\n");
+		ft_putstr("rrb\n");
 }
