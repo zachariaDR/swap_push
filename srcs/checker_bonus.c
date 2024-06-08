@@ -6,7 +6,7 @@
 /*   By: zadriouc <zadriouc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 00:34:19 by ael-khni          #+#    #+#             */
-/*   Updated: 2024/06/08 09:57:41 by zadriouc         ###   ########.fr       */
+/*   Updated: 2024/06/08 10:04:05 by zadriouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,3 @@ int	main(int ac, char **av)
 		ft_putstr("KO\n");
 	(free_stack(a), free_stack(b));
 	exit (EXIT_SUCCESS);
-}
